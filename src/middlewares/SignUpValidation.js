@@ -2,13 +2,13 @@ import connectionDB from "../database.js";
 import signUpSchema from "../schemas/SignUpSchema.js";
 
 export default async function SignUpValidation (req,res,next){    
-  const user = req.body;
-  const { email } = user;
+  const userData = req.body;
+  const { email } = userData;
 
-  const { error } = signUpSchema.validate(user, { abortEarly: false });
+  const { err } = signUpSchema.validate(user, { abortEarly: false });
 
-  if (error) {
-    const errors = error.details.map((detail) => detail.message);
+  if (err) {
+    const errors = err.details.map((detail) => detail.message);
     return res.status(422).send(errors);
   }
 
@@ -19,11 +19,11 @@ export default async function SignUpValidation (req,res,next){
       return res.sendStatus(409);
     }
 
-    res.locals.user = user;
+    res.locals.userData = userData;
 
     next();
 
   } catch (err) {
-    res.status(500).send(error.message);
+    res.status(500).send(err.message);
   }
 }
