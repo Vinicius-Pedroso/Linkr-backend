@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
-import SignInRouter from "./routes/SignInRoute";
-import SignUpRouter from "./routes/SignUpRoute";
+import SignInRouter from "./routes/SignInRoute.js";
+import SignUpRouter from "./routes/SignUpRoute.js";
 
 const app = express();
 app.use(express.json());
