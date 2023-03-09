@@ -1,7 +1,7 @@
 import connectionDB from "../database.js";
 import bcrypt from "bcrypt";
 
-export default async function SignUpController (req,res){
+export default async function SignUpController(req, res) {
 
     const { username, email, picture, password } = res.locals.userData;
     const encryptedPassword = bcrypt.hashSync(password, 10);
