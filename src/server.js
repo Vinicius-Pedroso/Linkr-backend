@@ -4,6 +4,7 @@ import SignInRouter from "./routes/SignInRoute.js";
 import SignUpRouter from "./routes/SignUpRoute.js";
 import usersRoute from "./routes/usersRoute.js"
 import dotenv from "dotenv";
+import postRoute from "./routes/PostRoute.js";
 
 dotenv.config();
 
@@ -11,7 +12,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-app.use([SignInRouter, SignUpRouter, usersRoute]);
+app.use([SignInRouter, SignUpRouter, usersRoute, postRoute]);
 //app.use(SignUpRouter);
 
 const port = process.env.PORT || 4000;
