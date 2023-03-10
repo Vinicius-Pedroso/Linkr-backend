@@ -21,6 +21,40 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
+-- Name: links; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.links (
+    id integer NOT NULL,
+    url text NOT NULL,
+    title text NOT NULL,
+    image text NOT NULL,
+    description text NOT NULL,
+    "createdAt" timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+--
+-- Name: links_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.links_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: links_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.links_id_seq OWNED BY public.links.id;
+
+
+--
 -- Name: public.hashtags; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -183,6 +217,13 @@ ALTER SEQUENCE public."public.users_id_seq" OWNED BY public."public.users".id;
 
 
 --
+-- Name: links id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.links ALTER COLUMN id SET DEFAULT nextval('public.links_id_seq'::regclass);
+
+
+--
 -- Name: public.hashtags id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -218,6 +259,12 @@ ALTER TABLE ONLY public."public.users" ALTER COLUMN id SET DEFAULT nextval('publ
 
 
 --
+-- Data for Name: links; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+
+
+--
 -- Data for Name: public.hashtags; Type: TABLE DATA; Schema: public; Owner: -
 --
 
@@ -245,6 +292,13 @@ ALTER TABLE ONLY public."public.users" ALTER COLUMN id SET DEFAULT nextval('publ
 -- Data for Name: public.users; Type: TABLE DATA; Schema: public; Owner: -
 --
 
+
+
+--
+-- Name: links_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.links_id_seq', 1, false);
 
 
 --
@@ -296,6 +350,14 @@ ALTER TABLE ONLY public."public.hashtags"
 
 ALTER TABLE ONLY public."public.likes"
     ADD CONSTRAINT likes_pk PRIMARY KEY (id);
+
+
+--
+-- Name: links links_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.links
+    ADD CONSTRAINT links_pkey PRIMARY KEY (id);
 
 
 --
