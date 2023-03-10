@@ -2,6 +2,10 @@ import express from "express";
 import cors from "cors";
 import SignInRouter from "./routes/SignInRoute.js";
 import SignUpRouter from "./routes/SignUpRoute.js";
+import usersRoute from "./routes/usersRoute.js"
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
 var express = require('express')
