@@ -5,7 +5,7 @@ export default async function SignUpValidation (req,res,next){
   const userData = req.body;
   const { email } = userData;
 
-  const { err } = signUpSchema.validate(user, { abortEarly: false });
+  const { err } = signUpSchema.validate(userData, { abortEarly: false });
 
   if (err) {
     const errors = err.details.map((detail) => detail.message);
@@ -16,7 +16,8 @@ export default async function SignUpValidation (req,res,next){
 
     const userExisteCheck = await connectionDB.query("SELECT * FROM users WHERE email=$1;", [email]);
     if (userExisteCheck) {
-      return res.sendStatus(409);
+      
+      return console.log(userExisteCheck), res.sendStatus(409);
     }
 
     res.locals.userData = userData;
